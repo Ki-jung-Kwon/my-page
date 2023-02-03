@@ -1,65 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>겨울방학 버킷리스트</title>
+    <title>Document</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;500;600;700&display=swap');
-        * {
-            font-family: 'Hahmlet', serif;
+        /* 이서윤체 폰트 적용을 위한 코드 */
+        @font-face {
+            font-family: "LeeSeoyun";
+            src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
         }
-        .title {
+
+        /* body태그 자체에 css 요소 부여 */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-image: url("background.png");
+        }
+        
+        .container {
+            width: 390px;
+            background-color: #ff9d73;
+            height: 100%;
+        }
+
+        .photos {
+            margin-top: 30px;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .f-title {
             color: white;
-            background-color: blue;
-            font-size: 24px;
-            padding: 4px 18px;
-            border-radius: 8px;
+            font-size: 25px;
+            font-weight: 900;
         }
 
-        .bg {
-            width: 360px;
-            background-image: url("https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bg-grid.png");
+        .f-date {
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
         }
 
-        .msg {
-            font-weight: bold;
+        #image1 {
+            background-image: url(./img1.png)
         }
 
-        .bucket {
-            width: 160px;
-            height: 160px;
+        #image2 {
+            background-image: url(./img2.png)
         }
 
-        .img1 {
-            background-image: url("https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-red.png");
+        #image3 {
+            background-image: url(./img3.png)
+        }
+
+        #image4 {
+            background-image: url(./img4.png)
+        }
+        
+        .photo-frame {
+            background-color: white;
+            margin: 15px 20px;
+            height: 200px;
             background-size: cover;
-            background-position: center;
+            position: relative;
+            cursor: pointer;
         }
 
-        .img2 {
-            background-image: url("https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-lightred.png");
-            background-size: cover;
-            background-position: center;
+        .photo_description {
+            color: white;
+            background-color: black;
+
+            width: fit-content;
+            padding: 0 20px;
+            margin-bottom: 10px;
+
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+
+            transform: translate(-50%);
+            left: 50%;
+
+            opacity: 0;
+        }
+
+        .video {
+            width: 100%;
+            height: 100%;
+        }
+
+        .showText {
+            opacity: 0;
+        }
+
+        .hideText {
+            opacity: 1;
+            transition: opacity 0.5s linear;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/sparta-bucket2.css">
+    <script>
+        function showText(number) {
+            if (number === 1) {
+                document.querySelector("#desc1").classList.remove("hideText");
+                document.querySelector("#desc1").classList.add("showText");
+            } else if (number === 2) {
+                document.querySelector("#desc2").classList.remove("hideText");
+                document.querySelector("#desc2").classList.add("showText");
+            } else {
+               document.querySelector("#desc3").classList.remove("hideText");
+               document.querySelector("#desc3").classList.add("showText");
+            }
+        }
+
+        function hideText(number) {
+            if (number === 1) {
+                document.querySelector("#desc1").classList.remove("showText");
+                document.querySelector("#desc1").classList.add("hideText");
+            } else if (number === 2) {
+                document.querySelector("#desc2").classList.remove("showText");
+                document.querySelector("#desc2").classList.add("hideText");
+            } else {
+                document.querySelector("#desc3").classList.remove("showText");
+                document.querySelector("#desc3").classList.add("hideText");
+            }
+        }
+
+        function alertText(number) {
+            alert(`${number}번째 추억이에요! 눌러주셔서 감사합니다 :)`);
+        }
+    </script>
 </head>
-
-<body class="bg center">
-    <h1 class="title">고등학교 입학 전 겨울방학 계획</h1>
-    <p class="msg">이번엔 꼭 모두 이루고 싶다.</p>
-    <div class="row flex-row wrap">
-        <div class="bucket img1-t5 center">주 4회 운동가기</div>
-        <div class="bucket img2-t5 center">EBS 완강하기</div>
-        <div class="bucket img3-t5 center">매일 영단어 50개 외우기</div>
-        <div class="bucket img4-t5 center">주 마다 1권씩 완독</div>
-        <div class="bucket img5-t5 center">3월 모의고사 준비</div>
-        <div class="bucket img6-t5 center">노트정리하기</div>
+<body>
+    <div class="container">
+        <div class="photos">
+            <div id="image1" class="photo-frame"
+                onmouseover="hideText(1)"
+                onmouseout="showText(1)"
+                onclick="alertText(1)">
+                <span id="desc1" class="photo_description">
+                    첫 번째 이미지
+                </span>
+            </div>
+            <div id="image2" class="photo-frame"
+                onmouseover="hideText(2)"
+                onmouseout="showText(2)"
+                onclick="alertText(2)">
+                <span id="desc1" class="photo_description">
+                    두 번째 이미지
+                </span>
+            </div>
+            <div id="image3" class="photo-frame"
+                onmouseover="hideText(2)"
+                onmouseout="showText(2)"
+                onclick="alertText(2)">
+                <span id="desc3" class="photo_description">
+                    세 번째 이미지
+                </span>
+            </div>
+            <div class="photo-frame">
+                <iframe src="https://www.youtube.com/embed/TWz1btekxfs" frameborder="0">
+                </iframe>
+            </div>
+            <div clas="footer">
+                <p class="f-title">Happy Lunch Time</p>
+                <p class="f-date">2023.02.02</p>
+            </div>
+        </div>
     </div>
-
 </body>
-
 </html>
